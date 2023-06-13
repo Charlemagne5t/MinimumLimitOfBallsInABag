@@ -17,4 +17,12 @@ public class SolutionTest {
         int output = 2;
         Assert.assertEquals(output, new Solution().minimumSize(nums, maxOperations));
     }
+
+    @Test
+    public void minimumSizeTest3() {
+        int[] nums = {1};
+        int maxOperations = 1;
+        int output = 1;
+        Assert.assertEquals(output, new Solution().minimumSize(nums, maxOperations));
+    }
 }
