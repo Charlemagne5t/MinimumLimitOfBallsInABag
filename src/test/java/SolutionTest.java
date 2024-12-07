@@ -20,9 +20,9 @@ public class SolutionTest {
 
     @Test
     public void minimumSizeTest3() {
-        int[] nums = {1};
-        int maxOperations = 1;
-        int output = 1;
+        int[] nums = {431,922,158,60,192,14,788,146,788,775,772,792,68,143,376,375,877,516,595,82,56,704,160,403,713,504,67,332,26};
+        int maxOperations = 80;
+        int output = 129;
         Assert.assertEquals(output, new Solution().minimumSize(nums, maxOperations));
     }
 }

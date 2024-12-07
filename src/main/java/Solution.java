@@ -1,37 +1,32 @@
-import java.util.*;
-
-public class Solution {
+class Solution {
     public int minimumSize(int[] nums, int maxOperations) {
-        int max = nums[0];
-        for (int i = 1; i < nums.length; i++) {
-            if (nums[i] > max) {
-                max = nums[i];
-            }
+        int res = Integer.MAX_VALUE;
+        int l = 1;
+        int r = 1_000_000_000;
+        int mid;
+
+        while(l <=r){
+            mid = l + (r - l) / 2;
+            if(check(nums, maxOperations, mid)) {
+                res = mid;
+                r = mid - 1;
+            }else l = mid + 1;
         }
+        return res;
+    }
 
-        int left = 1;
-        int right = max;
-        int mid = 0;
-        int result = max;
-        while (left <= right) {
-            mid = left + (right - left) / 2;
-            int count = 0;
-
-            for (int i = 0; i < nums.length; i++) {
-                if (nums[i] % mid == 0) {
-                    count += nums[i] / mid - 1;
-                } else count += nums[i] / mid;
-
+    boolean check(int[] nums, int max, int target) {
+        for(int i = 0; i < nums.length; i++) {
+            if(nums[i] <= target) {
+                continue;
             }
-
-            if (count > maxOperations) {
-                left = mid + 1;
-            } else {
-                result = Math.min(result, mid);
-                right = mid - 1;
+            int ops = nums[i] % target == 0 ? nums[i] / target : nums[i] / target + 1;
+            max -= ops -1;
+            if(max < 0) {
+                return false;
             }
 
         }
-        return result;
+        return true;
     }
 }
